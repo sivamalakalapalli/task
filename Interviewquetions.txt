@@ -1,0 +1,29 @@
+========================>
+1>hibernatemappings
+2>git
+3>waterfall
+4>agile
+5>boot
+6>database
+7>java8 features(fix)
+8>aop
+9>transaction
+10>hql
+11>criteria
+12>secondlevel cache
+13>servers(exples also)
+
+=========================>
+
+=>json how read list of files?
+
+=>structs one example
+
+
+
+
+=>microservice
+=>ajax
+=>javascript
+=>jquery
+=>

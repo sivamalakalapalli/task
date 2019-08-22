@@ -1,0 +1,470 @@
+public class Test {
+ public static String[] getCommonNames(String[] nm1,String[] nm2) { 
+ String[] commonnames=null; 
+ Set s1=new HashSet(Arrays.asList(nm1)); 
+ Set s2=new HashSet(Arrays.asList(nm2)); 
+ s1.retainAll(s2); .
+ commonnames=s1.toArray(new String[s1.size()]);
+ return commonnames; 
+ } 
+ public static void main(String[] args) {
+ String[] names1={"india","pakistan","australia","newzeland","australia"}; 
+ String[] names2={"india","pakistan","australia","india"}; 
+ 
+ String[] names=null; names=Test.getCommonNames(names1, names2); 
+ for (String name : names) { 
+ System.out.println(name); 
+ } 
+ } 
+ }
+ 
+ 
+ ===========================
+ how to sort elements in linked list
+ ============================================================
+ package com.ds.linkedlist;
+
+public class LinkedlistInt {
+
+private Node head;
+
+public LinkedlistInt(int item) {
+
+head = new Node();
+head.item = item;
+head.link = null;
+}
+
+public boolean insertNode(int item) {
+Node n1 = new Node();
+n1.item = item;
+n1.link = head;
+head = n1;
+return true;
+}
+
+public void traversal() {
+Node z = head;
+while (z != null) {
+System.out.println(z.item);
+z = z.link;
+}
+}
+
+public boolean delete(int item) {
+if (head.item == item) {
+head = head.link;
+}
+Node x = head;
+Node y = head.link;
+while (true) {
+if ((y == null) || (y.item == item)) {
+// System.out.println("element not found"); ||not also
+break;
+} else {
+x = y;
+y = y.link;
+}
+}
+if (y != null) {
+x.link = y.link;
+return true;
+} else {
+return false;
+}
+}
+
+public void swap() {
+
+Node x = head;
+Node y = head.link;
+int c = 0, temp;
+
+while (y != null) {
+
+System.out.println("hi" + c);
+while (y != null) {
+c++;
+if (x.item > y.item) {
+temp = x.item;
+x.item = y.item;
+y.item = temp;
+}
+x = x.link;
+
+}
+y = y.link;
+
+}
+System.out.println("hi" + c);
+}
+/*
+* public void sort(){
+*
+* int c=0,i=0;
+*  Node a=head.link;
+*   while(a.link!=null){
+*
+* Node b=head.link;
+* while(b.link!=null)
+* {
+* System.out.println("h"+ i++);
+*
+* if(b.item <b.link.item){
+*
+* c=b.item; b.item=b.link.item; b.link.item=c;
+* }
+ }
+*  b=b.link;
+*  
+* } a=a.link;
+*
+* }
+*/
+
+class Node {
+int item;
+Node link;
+}
+}
+?
+[/code]
+*************main class****************
+[code]
+package com.ds.linkedlist;
+
+public class Test {
+public static void main(String[] args) {
+LinkedlistInt list=new LinkedlistInt(1);
+list.insertNode(5);
+list.insertNode(3);
+list.insertNode(9);
+list.insertNode(2);
+list.traversal();
+//list.delete(2);
+System.out.println();
+list.sort();
+list.traversal();
+}
+}
+[/code]
+can any one help me to sort elements in this linkedlist
+
+input:- 5,15,10,25,20
+output:-5,10,15,20,25
+
+
+
+
+======================================
+reverse string
+===============================================
+package com.jdbc.prac;
+
+public class ReverseArray {
+
+    public static void main(String[] args) {
+		int[] a = {1,2,6,3,6,8,5,0,9};
+		int temp = 0;
+		for(int i = 0; i < a.length; i++) {
+			if(i < a.length/2) {
+				temp = a[i];
+				a[i] = a[a.length-1-i];
+				a[a.length-1-i] = temp;
+			}
+			System.out.print((i==0 ? "{" : "") + a[i] + (i == a.length-1 ?"}" :","));
+		}
+	}
+}?
+========================================
+public class ReverseArray {
+public static void main(String[] args) {
+System.out.println("Enter Size of Array:");
+Scanner sc=new Scanner(System.in);
+int num = sc.nextInt();
+int[] i=new int[num];
+System.out.println("Enter the values of array");
+for (int j = 0; j < i.length; j++) {
+i[j]=sc.nextInt();
+}
+System.out.println("Reverse Values of Array :");
+for (int j = 0; j < i.length; j++) {
+System.out.println(i[i.length-j-1]);
+}
+}
+}
+?
+==============================
+linked list=====================================================
+public class Node {
+ private int element;
+ private Node next;
+public Node(int element, Node next) {
+                                  this.element = element;
+                                  this.next = next;
+                       }
+ 
+                       public int getElement() {
+                              return element;
+                       }
+ 
+                        public void setElement(int element) {
+                              this.element = element;
+                        }
+ 
+                         public Node getNext() {
+                         return next;
+                          }
+ 
+                          public void setNext(Node next) {
+                          this.next = next;
+                           }
+ 
+}//Node class closed here
+ 
+//Single Link List
+ 
+public class SLinkedList {
+ private Node head;
+ private Node tail;
+ 
+ public void addFirst(Node node) {
+ 
+  if (head == null) {
+   head = node;
+   tail = node;
+  } else {
+ 
+   node.setNext(head);
+   head = node;
+ 
+  }
+ }
+ 
+ public void addLast(Node node) {
+ 
+  if (head == null) {
+   addFirst(node);
+ 
+  } else {
+ 
+   tail.setNext(node);
+   tail = node;
+  }
+ }
+
+//it will take the position and delete the node from start(head)
+ 
+ public void deleteNodeFromStart(int position) {
+  Node temp = null;
+  Node prev = null;
+  temp = head;
+  boolean flag = false;
+  int count = 1;
+  while (temp != null) {
+   prev = temp;
+   temp = temp.getNext();
+   count++;
+   if (count == position) {
+    flag = true;
+    break;
+   }
+  }
+  if (temp != null) {
+   if (flag == true)
+    prev.setNext(temp.getNext());
+ 
+  } else
+   System.out.println("Position not found");
+ 
+ }
+ 
+ // Reverse of Link List
+ /*
+  * input = 1---->2----->3----->4 head tail
+  * ==================================== Output =4----->3------>2----->1 tail
+  * head
+  *
+  * solution) 1<----2<-----3<-----4 just we need to reverse the pointer from
+  * start to end
+  *
+  * Taking one new node as newhead. currently head is on first position
+  * 1---->2----->3----->4 head we have to move the head to end one by one by
+  * reversing the link head.setNext(newhead) now it becomes link
+  * newhead<-----head before this keep head next node into one temp variable
+  * of node type
+  *
+  * then newhead=head and head will move to next position.
+  *
+  * newhead<----1<----2 head continue, till head is not null
+  */
+ 
+ public void reverse() {
+  Node newhead = null;
+  Node temp = null;
+  while (head != null) {
+   temp = head.getNext();
+   head.setNext(newhead);
+   newhead = head;
+   head = temp;
+ 
+  }
+  head = newhead;
+ 
+ }
+ 
+ public void display() {
+  Node temp = null;
+  temp = head;
+  System.out.print(temp.getElement());
+  while (temp.getNext() != null) {
+   System.out.print("---->" + temp.getNext().getElement());
+   temp = temp.getNext();
+  }
+ 
+ }
+ 
+ public static void main(String[] args) {
+ 
+  Node node1 = new Node(1, null);
+  Node node2 = new Node(2, null);
+  Node node3 = new Node(3, null);
+  SLinkedList link = new SLinkedList();
+  link.addFirst(node1);
+  link.addLast(node2);
+  //link.addLast(node3);
+  // link.deleteNodeFromStart(2);
+  //link.reverse();
+  link.display();
+ 
+ }
+}
+==============================================
+How to merge two Sorted Lists
+==========================================================
+ Reply Date : 4 Oct, 2017
+List1->
+2-->6-->7-->9-->NULL
+1-->8-->5-->10-->NULL
+======================
+OUTPUT    1-->2-->5-->6-->7-->8-->10-->NULL
+
+
+step1- Create the Node for singly linked list
+public class ListNode{
+int val;
+ListNode next;
+ListNode(int x){
+val=x;
+}
+}
+public class SortList{
+public ListNode mergeTwoLists(ListNode l1, ListNode l2){
+if(l1==null)
+return l2;
+if (l2==null)
+return l1;
+if(l1.val<=l2.val){
+l1.next=mergeTwoLists(l1.next,l2);
+return l1;
+}
+else 
+l2.next=mergeTwoLists(l2.next,l1);
+return l2;
+}
+}
+}
+
+
+
+
+Time Complexity=O(N)
+O(N1)+O(N2) =O(N) where N1 and N2 represents the length of the lists L1 and L2.
+
+===================================================================
+How Map/HashMap Works Internally in Java
+Posted by: Ima Miri  in Core Java December 2nd, 2015 5 Comments 7406 Views
+
+This is one of the java interview questions that can put the candidate in a challenge. Most of java developers may not have a deep understanding of the Hashing and how HashMap works inside Java. Here we will discuss about it.
+
+1. Map and HashMap
+Map is a collection which stores elements as key-value pairs. A map cannot contain duplicate keys and each key can map to at most one value. The Map interface includes methods for basic operations (such as put, get, remove, containsKey, containsValue, size, and empty), bulk operations (such as putAll and clear), and collection views (such as keySet, entrySet, and values).
+
+HashMap implements Map interface in java. It is not synchronized and is not thread safe. Here is an example how to use HashMap in java:
+
+1
+2
+3
+4
+5
+6
+7
+8
+public static void main(String[] args) throws IOException {
+ 
+        Map hashMap = new HashMap();
+        hashMap.put(11,"Soccer");
+        hashMap.put(22,"Rugby");
+        hashMap.put(33,"Baseball");
+        System.out.println("Map is " + hashMap);
+}
+Output:
+
+1
+Map is {11=Soccer, 22=Rugby, 33=Baseball}
+HashMap works with Hashing.  To understand Hashing , we should understand first about HashFunction, HashValue and Bucket.
+
+1.1. What is Hashing
+Lets consider an array that is not sorted and the problem is searching a value in the array. The search requires comparing all elements of the array. So, the time complexity is O(n) . If the array is sorted, a binary search can reduce the time complexity to O(log n). Also, the search can be faster if there is a function which returns an index for each element in the array. In that case the time complexity is reduced to a constant time O(1). Such a function is called Hash Function. A hash function is a function which for a given key, generates a Hash Value.
+
+Java has a hash function which called hashCode(). The hashCode() method is implemented in the Object class and therefore each class in Java inherits it. The hash code provides the hash value. Here is the implementation of hashCode method in Object class.
+
+1
+public native int hashCode();
+1.2. What is bucket?
+A bucket is used to store key-value pairs. A bucket can have multiple key-value pairs. In hashMap, bucket uses simple linkedlist to store objects.
+
+2. HashMap implementation inside Java
+In HashMap, get(Object key) calls hashCode() on the key object and uses the returned hashValue to find a bucket location where keys and values are stored as an Entry object. Here is the implementation of get(Object key) in java.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+public V get(Object key) {
+        Node<K,V> e;
+        return (e = getNode(hash(key), key)) == null ? null : e.value;
+}
+ 
+static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+}
+get(Object key) also checks whether the key is null or not. There can be only one null key in HashMap. If the key is null, then the null key always map to hash 0, then index 0. If the key is not null, then it will call hash function on the key object (See the line 8 in the code above).
+
+Now, the hashValue is used to find the bucket location at which Entry object is stored. Entry object stores in the bucket as (hash, key, value, bucket index). Then, the value object is returned.
+
+Tip
+The time complexity of HashMap get() and put() method is O(1) as it uses hashCode to find the value.
+What about if two keys have the same hashcode? Here, the implementation of equals() method for key object is become important.
+
+The bucket is a linkedlist but not java.util.Linkedlist. HashMap has its own implementation of the linkedlist. Therefore, it traverses through linkedlist and compares keys in each entry using keys.equals() until equals() returns true. Then, the value object is returned. In the following image, you can see that two keys have the same hashcode.
+
+hashmap
+
+Also, if when two keys are same and have the same hashcode, then the previous key-value pair is replaced with the current key-value pair.
+
+It is important that in Map, any class can serve as a key if and only if it overrides the equals() and hashCode() method. Also, it is the best practice to make the key class an immutable class.
+
+2.1 HashMap performance
+An instance of HashMap has two attributes that affect its performance: initial capacity and load factor.
+
+The capacity is the number of buckets in the hashMap. The initial capacity is the capacity when the hashMap is created.
+
+The load factor is a measure of how full the HashMap is allowed to get, before its capacity is automatically increased. When the number of entries in the HashMap exceeds the product of the load factor and the current capacity, the hashMap is rehashed. Then, the HashMap has approximately twice the number of buckets. In HashMap class, the default value of load factor is 0.75.
+
